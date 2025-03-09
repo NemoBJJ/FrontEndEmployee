@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8085';
+const API_BASE_URL = 'https://apiempl.neemindev.com'; // Adicione "https://"
 
 export const getDashboardData = async () => {
   const response = await fetch(`${API_BASE_URL}/api/dashboard`);
@@ -16,7 +16,6 @@ export const getEmployees = async (page = 0, size = 10) => {
   return response.json();
 };
 
-// ✅ Adicione esta função que estava faltando
 export const getEmployeesWithSalary = async (page = 0, size = 10) => {
   const response = await fetch(`${API_BASE_URL}/api/employees/salaries-json?page=${page}&size=${size}`);
   if (!response.ok) {
