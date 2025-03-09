@@ -11,7 +11,7 @@ const ExportReports = () => {
       <div className="buttons-container">
         <Button
           variant="primary"
-          href="http://localhost:8085/api/reports/export/job-titles/csv"
+          href="https://apiempl.neemindev.com/api/reports/export/job-titles/csv"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -20,7 +20,7 @@ const ExportReports = () => {
 
         <Button
           variant="success"
-          href="http://localhost:8085/api/reports/export/job-titles/excel"
+          href="https://apiempl.neemindev.com/api/reports/export/job-titles/excel"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -29,7 +29,7 @@ const ExportReports = () => {
 
         <Button
           variant="danger"
-          href="http://localhost:8085/api/reports/export/job-titles/pdf"
+          href="https://apiempl.neemindev.com/api/reports/export/job-titles/pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
