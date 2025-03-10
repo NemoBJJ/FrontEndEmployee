@@ -43,19 +43,19 @@ const EmployeeList = () => {
 
   return (
     <div className="employee-list">
-      <h1>Lista de Funcionários</h1>
+      <h1>LIST</h1>
 
       {/* Campo de busca por ID */}
       <Form.Group className="mb-3">
-        <Form.Label>Buscar Funcionário por ID</Form.Label>
+        <Form.Label>find by ID</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Digite o ID do funcionário"
+          placeholder="HERE"
           value={searchId}
           onChange={(e) => setSearchId(e.target.value)}
         />
         <Button variant="primary" onClick={handleSearch}>
-          Buscar
+          SEARCH
         </Button>
       </Form.Group>
 

@@ -19,7 +19,7 @@ const Dashboard = () => {
     labels: dashboardData.jobTitles.map((item) => item.jobTitle),
     datasets: [
       {
-        label: 'Quantidade de Funcionários',
+        label: 'Range',
         data: dashboardData.jobTitles.map((item) => item.employeeCount),
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',

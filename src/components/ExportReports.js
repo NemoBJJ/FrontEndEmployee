@@ -5,7 +5,7 @@ import './ExportReports.css';
 const ExportReports = () => {
   return (
     <Container className="export-reports">
-      <h1>Exportação de Relatórios</h1>
+      <h1>Export Reports</h1>
 
       {/* Container para alinhar os botões corretamente */}
       <div className="buttons-container">
