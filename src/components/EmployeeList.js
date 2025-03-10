@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { getEmployees } from '../api/api';
-import { Table, Pagination } from 'react-bootstrap';
+import { getEmployees, getEmployeeById } from '../api/api'; // Adicione a nova função
+import { Table, Pagination, Form, Button, Alert } from 'react-bootstrap';
 import './EmployeeList.css';
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [searchId, setSearchId] = useState(''); // Estado para o ID de busca
+  const [searchedEmployee, setSearchedEmployee] = useState(null); // Estado para o funcionário buscado
+  const [error, setError] = useState(null); // Estado para mensagens de erro
   const pageSize = 10; // Tamanho da página
 
   useEffect(() => {
@@ -20,9 +23,73 @@ const EmployeeList = () => {
     });
   };
 
+  // Função para buscar funcionário por ID
+  const handleSearch = () => {
+    if (!searchId) {
+      setError('Por favor, insira um ID válido.');
+      return;
+    }
+
+    getEmployeeById(searchId)
+      .then((employee) => {
+        setSearchedEmployee(employee);
+        setError(null);
+      })
+      .catch(() => {
+        setError('Funcionário não encontrado.');
+        setSearchedEmployee(null);
+      });
+  };
+
   return (
     <div className="employee-list">
       <h1>Lista de Funcionários</h1>
+
+      {/* Campo de busca por ID */}
+      <Form.Group className="mb-3">
+        <Form.Label>Buscar Funcionário por ID</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Digite o ID do funcionário"
+          value={searchId}
+          onChange={(e) => setSearchId(e.target.value)}
+        />
+        <Button variant="primary" onClick={handleSearch}>
+          Buscar
+        </Button>
+      </Form.Group>
+
+      {/* Exibir mensagem de erro */}
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      {/* Exibir detalhes do funcionário buscado */}
+      {searchedEmployee && (
+        <div className="employee-details">
+          <h2>Detalhes do Funcionário</h2>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Departamento</th>
+                <th>Salário</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{searchedEmployee.id}</td>
+                <td>{searchedEmployee.name}</td>
+                <td>{searchedEmployee.jobTitle}</td>
+                <td>{searchedEmployee.department}</td>
+                <td>{searchedEmployee.salary}</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+      )}
+
+      {/* Lista de funcionários */}
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -45,6 +112,8 @@ const EmployeeList = () => {
           ))}
         </tbody>
       </Table>
+
+      {/* Paginação */}
       <Pagination>
         {Array.from({ length: totalPages }, (_, i) => (
           <Pagination.Item key={i} active={i === page} onClick={() => setPage(i)}>
