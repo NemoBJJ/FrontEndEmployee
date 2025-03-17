@@ -12,19 +12,16 @@
   text-align: center;
 }
 
-/* Responsividade da tabela */
-.employee-list table {
-  width: 100%;
-  max-width: 900px; /* Limita tamanho da tabela */
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  overflow-x: auto;
-}
-
-/* Permite rolagem lateral para tabelas grandes */
 .employee-list .table-container {
   width: 100%;
   overflow-x: auto;
+}
+
+.employee-list table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .employee-list th,
@@ -43,7 +40,6 @@
   background-color: #f1f1f1;
 }
 
-/* Paginação */
 .pagination {
   display: flex;
   justify-content: center;
@@ -65,7 +61,6 @@
   cursor: pointer;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .employee-list h1 {
     font-size: 1.8rem;
@@ -74,7 +69,7 @@
 
   .employee-list .table-container {
     width: 100%;
-    overflow-x: auto; /* Permite rolagem horizontal */
+    overflow-x: auto;
   }
 
   .pagination {

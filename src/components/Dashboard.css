@@ -14,28 +14,27 @@
   text-align: center;
 }
 
-/* Responsividade para o Dashboard */
 .chart-container {
-  width: 90%; /* Agora ocupa 90% da tela para melhor ajuste */
-  max-width: 1000px; /* Máximo de 1000px no desktop */
+  width: 90%;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px; /* Menos padding no mobile */
+  padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-x: auto; /* Permite rolagem horizontal caso necessário */
+  overflow-x: auto;
 }
 
-/* Media Query para Mobile */
 @media (max-width: 768px) {
   .dashboard h1 {
-    font-size: 2rem; /* Reduz tamanho do título */
+    font-size: 2rem;
     margin-bottom: 20px;
   }
 
   .chart-container {
-    width: 95%; /* Aumenta a largura para melhor encaixe */
-    padding: 15px; /* Ajusta padding */
-    border-radius: 8px; /* Mantém um visual agradável */
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    overflow-x: auto;
   }
 }
