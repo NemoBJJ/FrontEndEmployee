@@ -1,7 +1,10 @@
-..dashboard {
+.dashboard {
   padding: 20px;
   background-color: #f8f9fa;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dashboard h1 {
@@ -11,11 +14,28 @@
   text-align: center;
 }
 
+/* Responsividade para o Dashboard */
 .chart-container {
-  max-width: 1000px;
+  width: 90%; /* Agora ocupa 90% da tela para melhor ajuste */
+  max-width: 1000px; /* Máximo de 1000px no desktop */
   margin: 0 auto;
-  padding: 30px;
+  padding: 20px; /* Menos padding no mobile */
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Permite rolagem horizontal caso necessário */
+}
+
+/* Media Query para Mobile */
+@media (max-width: 768px) {
+  .dashboard h1 {
+    font-size: 2rem; /* Reduz tamanho do título */
+    margin-bottom: 20px;
+  }
+
+  .chart-container {
+    width: 95%; /* Aumenta a largura para melhor encaixe */
+    padding: 15px; /* Ajusta padding */
+    border-radius: 8px; /* Mantém um visual agradável */
+  }
 }

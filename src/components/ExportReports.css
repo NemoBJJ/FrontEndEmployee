@@ -2,6 +2,9 @@
   padding: 20px;
   background-color: #f8f9fa;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .export-reports h1 {
@@ -17,10 +20,11 @@
   justify-content: center;
   gap: 20px;
   margin-top: 30px;
+  flex-wrap: wrap; /* Permite quebrar linha em telas menores */
 }
 
 .export-reports button {
-  padding: 15px 30px;
+  padding: 12px 25px;
   font-size: 1rem;
   border: none;
   border-radius: 5px;
@@ -39,4 +43,22 @@
 
 .export-reports button:nth-child(3):hover {
   background-color: #c82333; /* Vermelho */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .export-reports h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .export-reports .buttons-container {
+    flex-direction: column; /* Empilha botões no mobile */
+    align-items: center;
+  }
+
+  .export-reports button {
+    width: 90%; /* Ocupa mais espaço em telas pequenas */
+    text-align: center;
+  }
 }

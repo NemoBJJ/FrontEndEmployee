@@ -1,17 +1,30 @@
 .employee-list {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .employee-list h1 {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #333;
+  text-align: center;
 }
 
+/* Responsividade da tabela */
 .employee-list table {
   width: 100%;
+  max-width: 900px; /* Limita tamanho da tabela */
   border-collapse: collapse;
   margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+/* Permite rolagem lateral para tabelas grandes */
+.employee-list .table-container {
+  width: 100%;
+  overflow-x: auto;
 }
 
 .employee-list th,
@@ -30,14 +43,16 @@
   background-color: #f1f1f1;
 }
 
+/* Paginação */
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .pagination .page-item {
-  margin: 0 5px;
+  margin: 5px;
 }
 
 .pagination .page-item.active .page-link {
@@ -48,4 +63,22 @@
 .pagination .page-link {
   color: #007bff;
   cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .employee-list h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  .employee-list .table-container {
+    width: 100%;
+    overflow-x: auto; /* Permite rolagem horizontal */
+  }
+
+  .pagination {
+    flex-direction: column;
+    align-items: center;
+  }
 }
