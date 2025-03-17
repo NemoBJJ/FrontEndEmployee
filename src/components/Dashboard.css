@@ -1,3 +1,4 @@
+/* Dashboard */
 .dashboard {
   padding: 20px;
   background-color: #f8f9fa;
@@ -28,13 +29,17 @@
 
 /* Ajustes para dispositivos móveis */
 @media (max-width: 768px) {
+  .dashboard {
+    padding: 10px; /* Reduz o padding para mobile */
+  }
+
   .dashboard h1 {
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Tamanho menor para o título no mobile */
   }
 
   .chart-container {
-    width: 95%;
-    height: 300px; /* Altura menor para mobile */
+    width: 100%; /* Ocupa 100% da largura */
+    height: 350px; /* Aumenta a altura para mobile */
     padding: 10px;
     border-radius: 8px;
   }
@@ -44,6 +49,6 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .chart-container {
     max-width: 700px;
-    height: 350px; /* Altura intermediária para tablets */
+    height: 400px; /* Altura intermediária para tablets */
   }
 }

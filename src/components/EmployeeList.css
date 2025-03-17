@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  gap: 10px; /* Dá um espaço entre os botões */
+  gap: 10px; /* Espaço entre os botões */
 }
 
 .pagination .page-item {
@@ -31,14 +31,15 @@
   color: white;
 }
 
-/* Melhorando responsividade */
+/* Melhorando responsividade da paginação */
 @media (max-width: 768px) {
   .pagination {
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Quebra os botões em várias linhas */
+    gap: 5px; /* Reduz o espaço entre os botões */
   }
 
   .pagination .page-link {
     font-size: 0.9rem;
-    padding: 6px 10px;
+    padding: 6px 10px; /* Reduz o padding dos botões */
   }
 }
