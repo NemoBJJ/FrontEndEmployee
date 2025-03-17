@@ -12,14 +12,17 @@
   text-align: center;
 }
 
+/* Garantir que a tabela seja responsiva e organizada */
 .employee-list .table-container {
   width: 100%;
+  max-width: 900px;
   overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .employee-list table {
   width: 100%;
-  max-width: 900px;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
@@ -27,12 +30,19 @@
 .employee-list th,
 .employee-list td {
   padding: 12px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-.employee-list th {
+/* Ajustar os IDs e evitar que fiquem isolados */
+.employee-list td:first-child {
+  font-weight: bold;
   background-color: #f8f9fa;
+}
+
+.employee-list th {
+  background-color: #1e3a8a;
+  color: white;
   font-weight: bold;
 }
 
@@ -40,6 +50,7 @@
   background-color: #f1f1f1;
 }
 
+/* Paginação */
 .pagination {
   display: flex;
   justify-content: center;
@@ -61,6 +72,7 @@
   cursor: pointer;
 }
 
+/* Melhorando responsividade */
 @media (max-width: 768px) {
   .employee-list h1 {
     font-size: 1.8rem;
@@ -70,6 +82,11 @@
   .employee-list .table-container {
     width: 100%;
     overflow-x: auto;
+  }
+
+  /* Melhorando visualização no mobile */
+  .employee-list table {
+    font-size: 0.9rem;
   }
 
   .pagination {
