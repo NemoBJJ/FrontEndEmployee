@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-/* Garantir que os gráficos não quebrem */
+/* Melhorando a exibição do gráfico */
 .chart-container {
   width: 100%;
   max-width: 900px;
@@ -26,9 +26,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: auto;
 }
 
-/* Responsividade para telas pequenas */
+/* Melhorando responsividade */
 @media (max-width: 768px) {
   .dashboard h1 {
     font-size: 1.8rem;

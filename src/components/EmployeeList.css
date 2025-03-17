@@ -1,96 +1,44 @@
-.employee-list {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.employee-list h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
-  text-align: center;
-}
-
-/* Garantir que a tabela seja responsiva e organizada */
-.employee-list .table-container {
-  width: 100%;
-  max-width: 900px;
-  overflow-x: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.employee-list table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.employee-list th,
-.employee-list td {
-  padding: 12px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Ajustar os IDs e evitar que fiquem isolados */
-.employee-list td:first-child {
-  font-weight: bold;
-  background-color: #f8f9fa;
-}
-
-.employee-list th {
-  background-color: #1e3a8a;
-  color: white;
-  font-weight: bold;
-}
-
-.employee-list tr:hover {
-  background-color: #f1f1f1;
-}
-
 /* Paginação */
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  flex-wrap: wrap;
+  gap: 10px; /* Dá um espaço entre os botões */
 }
 
 .pagination .page-item {
-  margin: 5px;
-}
-
-.pagination .page-item.active .page-link {
-  background-color: #007bff;
-  border-color: #007bff;
+  margin: 0;
 }
 
 .pagination .page-link {
   color: #007bff;
   cursor: pointer;
+  padding: 8px 12px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination .page-link:hover {
+  background-color: #0056b3;
+  color: white;
 }
 
 /* Melhorando responsividade */
 @media (max-width: 768px) {
-  .employee-list h1 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-  }
-
-  .employee-list .table-container {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  /* Melhorando visualização no mobile */
-  .employee-list table {
-    font-size: 0.9rem;
-  }
-
   .pagination {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .pagination .page-link {
+    font-size: 0.9rem;
+    padding: 6px 10px;
   }
 }
