@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getDashboardData } from '../api/api';
-import { Pie } from 'react-chartjs-2'; // Alterado para gráfico de pizza
+import { Pie } from 'react-chartjs-2'; // Gráfico de pizza
 import 'chart.js/auto';
 import './Dashboard.css';
 
