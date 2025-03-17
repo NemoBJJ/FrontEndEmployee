@@ -31,7 +31,7 @@
     .employee-list th,
     .employee-list td {
         padding: 6px;
-        font-size: 0.9rem;
+        font-size: 0.85rem; /* Diminuindo a fonte para melhor ajuste */
     }
 }
 
@@ -44,14 +44,14 @@
 }
 
 .pagination button {
-    padding: 8px 15px;
+    padding: 8px 12px;
     border: none;
     background-color: #4caf50;
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Reduzindo tamanho dos botões no mobile */
 }
 
 .pagination button:disabled {
