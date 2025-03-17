@@ -4,44 +4,82 @@
     padding: 20px;
 }
 
+/* Garantindo que a tabela ocupe 100% da largura da tela */
 .employee-list table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    table-layout: fixed; /* Força as colunas a se ajustarem automaticamente */
 }
 
+/* Melhorando tamanho das colunas para evitar scroll */
 .employee-list th,
 .employee-list td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    word-wrap: break-word; /* Quebra longos textos */
+    overflow: hidden;
 }
 
-.employee-list th {
-    background-color: #f4f4f4;
+/* Ajustando tamanho mínimo das colunas para caber no mobile */
+.employee-list th:nth-child(1), /* ID */
+.employee-list td:nth-child(1) {
+    width: 10%;
 }
 
-/* Melhorando responsividade da tabela */
+.employee-list th:nth-child(2), /* Nome */
+.employee-list td:nth-child(2) {
+    width: 20%;
+}
+
+.employee-list th:nth-child(3), /* Cargo */
+.employee-list td:nth-child(3) {
+    width: 20%;
+}
+
+.employee-list th:nth-child(4), /* Departamento */
+.employee-list td:nth-child(4) {
+    width: 20%;
+}
+
+.employee-list th:nth-child(5), /* Salário */
+.employee-list td:nth-child(5) {
+    width: 15%;
+}
+
+.employee-list th:nth-child(6), /* Data de Admissão */
+.employee-list td:nth-child(6) {
+    width: 15%;
+}
+
+/* RESPONSIVIDADE - Ajuste no Mobile */
 @media (max-width: 768px) {
+    .employee-list {
+        padding: 10px;
+    }
+
     .employee-list table {
         display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+        width: 100%;
+        overflow-x: auto; /* Se necessário, permite rolagem horizontal */
+        white-space: nowrap; /* Evita quebra de texto estranha */
     }
 
     .employee-list th,
     .employee-list td {
         padding: 6px;
-        font-size: 0.85rem; /* Reduzindo fonte para caber na tela */
+        font-size: 0.85rem; /* Fonte menor para encaixar melhor */
     }
 }
 
-/* MELHORANDO A PAGINAÇÃO */
+/* PAGINAÇÃO */
 .pagination {
     display: flex;
     justify-content: center;
     margin-top: 20px;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .pagination button {
@@ -64,18 +102,18 @@
     background-color: #45a049;
 }
 
-/* MELHORANDO A PAGINAÇÃO NO MOBILE */
+/* PAGINAÇÃO NO MOBILE */
 @media (max-width: 768px) {
     .pagination {
-        flex-wrap: nowrap; /* Mantém os botões em linha única */
-        overflow-x: auto; /* Se houver muitos botões, permite rolar horizontalmente */
+        flex-wrap: nowrap;
+        overflow-x: auto;
         padding: 10px 5px;
         justify-content: flex-start;
     }
 
     .pagination button {
-        font-size: 0.8rem; /* Reduzindo fonte */
-        padding: 5px 8px; /* Ajustando tamanho dos botões */
+        font-size: 0.8rem;
+        padding: 5px 8px;
     }
 }
 
