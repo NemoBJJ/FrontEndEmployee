@@ -1,81 +1,128 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import api from '../api';
+import { getEmployees, getEmployeeById } from '../api/api'; // Adicione a nova função
+import { Table, Pagination, Form, Button, Alert } from 'react-bootstrap';
 import './EmployeeList.css';
 
 const EmployeeList = () => {
-    const [employees, setEmployees] = useState([]);
-    const [page, setPage] = useState(0);
-    const [totalPages, setTotalPages] = useState(0);
+  const [employees, setEmployees] = useState([]);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [searchId, setSearchId] = useState(''); // Estado para o ID de busca
+  const [searchedEmployee, setSearchedEmployee] = useState(null); // Estado para o funcionário buscado
+  const [error, setError] = useState(null); // Estado para mensagens de erro
+  const pageSize = 10; // Tamanho da página
 
-    useEffect(() => {
-        fetchEmployees(page);
-    }, [page]);
+  useEffect(() => {
+    fetchEmployees(page);
+  }, [page]);
 
-    const fetchEmployees = async (currentPage) => {
-        try {
-            const response = await api.get(`/employees/paged?page=${currentPage}&size=10`);
-            setEmployees(response.data.content);
-            setPage(response.data.number);
-            setTotalPages(response.data.totalPages);
-        } catch (error) {
-            console.error('Erro ao buscar funcionários:', error);
-        }
-    };
+  const fetchEmployees = (page) => {
+    getEmployees(page, pageSize).then((response) => {
+      setEmployees(response.content);
+      setTotalPages(response.totalPages);
+    });
+  };
 
-    const handlePreviousPage = () => {
-        if (page > 0) setPage(page - 1);
-    };
+  // Função para buscar funcionário por ID
+  const handleSearch = () => {
+    if (!searchId) {
+      setError('Por favor, insira um ID válido.');
+      return;
+    }
 
-    const handleNextPage = () => {
-        if (page < totalPages - 1) setPage(page + 1);
-    };
+    getEmployeeById(searchId)
+      .then((employee) => {
+        setSearchedEmployee(employee);
+        setError(null);
+      })
+      .catch(() => {
+        setError('Funcionário não encontrado.');
+        setSearchedEmployee(null);
+      });
+  };
 
-    return (
-        <div className="employee-list">
-            <h2>Lista de Funcionários</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Cargo</th>
-                        <th>Departamento</th>
-                        <th>Salário</th>
-                        <th>Data de Admissão</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {employees.map((employee) => (
-                        <tr key={employee.id}>
-                            <td>{employee.id}</td>
-                            <td>{employee.name}</td>
-                            <td>{employee.position}</td>
-                            <td>{employee.department}</td>
-                            <td>R$ {employee.salary.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
-                            <td>{employee.hireDate}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div className="pagination">
-                <button onClick={handlePreviousPage} disabled={page === 0}>
-                    Página Anterior
-                </button>
-                <span>
-                    Página {page + 1} de {totalPages}
-                </span>
-                <button onClick={handleNextPage} disabled={page === totalPages - 1}>
-                    Próxima Página
-                </button>
-            </div>
-            <div className="back-to-menu">
-                <Link to="/">
-                    <button className="back-button">Voltar ao Menu</button>
-                </Link>
-            </div>
+  return (
+    <div className="employee-list">
+      <h1>LIST</h1>
+
+      {/* Campo de busca por ID */}
+      <Form.Group className="mb-3">
+        <Form.Label>find by ID</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="HERE"
+          value={searchId}
+          onChange={(e) => setSearchId(e.target.value)}
+        />
+        <Button variant="primary" onClick={handleSearch}>
+          SEARCH
+        </Button>
+      </Form.Group>
+
+      {/* Exibir mensagem de erro */}
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      {/* Exibir detalhes do funcionário buscado */}
+      {searchedEmployee && (
+        <div className="employee-details">
+          <h2>Detalhes do Funcionário</h2>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Departamento</th>
+                <th>Salário</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{searchedEmployee.id}</td>
+                <td>{searchedEmployee.name}</td>
+                <td>{searchedEmployee.jobTitle}</td>
+                <td>{searchedEmployee.department}</td>
+                <td>{searchedEmployee.salary}</td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
-    );
+      )}
+
+      {/* Lista de funcionários */}
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th>Departamento</th>
+            <th>Salário</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employees.map((employee) => (
+            <tr key={employee.id}>
+              <td>{employee.id}</td>
+              <td>{employee.name}</td>
+              <td>{employee.jobTitle}</td>
+              <td>{employee.department}</td>
+              <td>{employee.salary}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
+      {/* Paginação */}
+      <Pagination>
+        {Array.from({ length: totalPages }, (_, i) => (
+          <Pagination.Item key={i} active={i === page} onClick={() => setPage(i)}>
+            {i + 1}
+          </Pagination.Item>
+        ))}
+      </Pagination>
+    </div>
+  );
 };
 
 export default EmployeeList;
