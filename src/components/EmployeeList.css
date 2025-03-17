@@ -1,45 +1,84 @@
-/* Paginação */
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 10px; /* Espaço entre os botões */
+.employee-list {
+    text-align: center;
+    padding: 20px;
 }
 
-.pagination .page-item {
-  margin: 0;
+.employee-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.pagination .page-link {
-  color: #007bff;
-  cursor: pointer;
-  padding: 8px 12px;
-  border: 1px solid #007bff;
-  border-radius: 5px;
-  background-color: white;
-  transition: all 0.3s ease;
+.employee-list th,
+.employee-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
 
-.pagination .page-item.active .page-link {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
+.employee-list th {
+    background-color: #f4f4f4;
 }
 
-.pagination .page-link:hover {
-  background-color: #0056b3;
-  color: white;
-}
-
-/* Melhorando responsividade da paginação */
+/* Melhorando responsividade da tabela */
 @media (max-width: 768px) {
-  .pagination {
-    flex-wrap: wrap; /* Quebra os botões em várias linhas */
-    gap: 5px; /* Reduz o espaço entre os botões */
-  }
+    .employee-list table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 
-  .pagination .page-link {
-    font-size: 0.9rem;
-    padding: 6px 10px; /* Reduz o padding dos botões */
-  }
+    .employee-list th,
+    .employee-list td {
+        padding: 6px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Estilização da paginação */
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+/* Estilo para o botão de voltar ao menu */
+.back-to-menu {
+    margin-top: 20px;
+}
+
+.back-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #ff5c5c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #e60000;
 }
