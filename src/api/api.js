@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://employee-container.neemindev.com'; // Adicione "https://"
+const API_BASE_URL = 'https://apiempl.neemindev.com';
 
 // Buscar dados do dashboard
 export const getDashboardData = async () => {
@@ -35,3 +35,67 @@ export const getEmployeeById = async (id) => {
   }
   return response.json();
 };
+
+// Adicionar novo funcionário
+export const addEmployee = async (employeeData) => {
+  const response = await fetch(`${API_BASE_URL}/api/employees`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(employeeData),
+  });
+  if (!response.ok) {
+    throw new Error('Erro ao adicionar funcionário');
+  }
+  return response.json();
+};
+
+// Atualizar funcionário
+export const updateEmployee = async (id, employeeData) => {
+  const response = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(employeeData),
+  });
+  if (!response.ok) {
+    throw new Error('Erro ao atualizar funcionário');
+  }
+  return response.json();
+};
+
+// Deletar funcionário
+export const deleteEmployee = async (id) => {
+  const response = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
+    method: 'DELETE',
+  });
+  if (!response.ok) {
+    throw new Error('Erro ao deletar funcionário');
+  }
+  return response.json();
+};
+
+// Buscar salários com paginação
+export const getSalaries = async (page = 0, size = 10) => {
+  const response = await fetch(`${API_BASE_URL}/api/salaries?page=${page}&size=${size}`);
+  if (!response.ok) {
+    throw new Error('Erro ao buscar salários');
+  }
+  return response.json();
+};
+
+// Exportando todas as funções como um objeto único (opcional)
+const apiService = {
+  getDashboardData,
+  getEmployees,
+  getEmployeesWithSalary,
+  getEmployeeById,
+  addEmployee,
+  updateEmployee,
+  deleteEmployee,
+  getSalaries
+};
+
+export default apiService;
