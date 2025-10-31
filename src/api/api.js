@@ -1,8 +1,9 @@
-const API_BASE_URL = 'https://apiempl.neemindev.com';
+// Base URL apontando para o endpoint público do Load Balancer
+const API_BASE_URL = 'https://employee-container.neemindev.com/api/api';
 
 // Buscar dados do dashboard
 export const getDashboardData = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/dashboard`);
+  const response = await fetch(`${API_BASE_URL}/dashboard`);
   if (!response.ok) {
     throw new Error('Erro ao buscar dados do dashboard');
   }
@@ -11,7 +12,7 @@ export const getDashboardData = async () => {
 
 // Buscar funcionários com paginação
 export const getEmployees = async (page = 0, size = 10) => {
-  const response = await fetch(`${API_BASE_URL}/api/employees?page=${page}&size=${size}`);
+  const response = await fetch(`${API_BASE_URL}/employees?page=${page}&size=${size}`);
   if (!response.ok) {
     throw new Error('Erro ao buscar funcionários');
   }
@@ -20,7 +21,7 @@ export const getEmployees = async (page = 0, size = 10) => {
 
 // Buscar funcionários com salários e paginação
 export const getEmployeesWithSalary = async (page = 0, size = 10) => {
-  const response = await fetch(`${API_BASE_URL}/api/employees/salaries-json?page=${page}&size=${size}`);
+  const response = await fetch(`${API_BASE_URL}/employees/salaries-json?page=${page}&size=${size}`);
   if (!response.ok) {
     throw new Error('Erro ao buscar funcionários com salários');
   }
@@ -29,7 +30,7 @@ export const getEmployeesWithSalary = async (page = 0, size = 10) => {
 
 // Buscar funcionário por ID
 export const getEmployeeById = async (id) => {
-  const response = await fetch(`${API_BASE_URL}/api/employees/${id}`);
+  const response = await fetch(`${API_BASE_URL}/employees/${id}`);
   if (!response.ok) {
     throw new Error('Erro ao buscar funcionário');
   }
@@ -38,7 +39,7 @@ export const getEmployeeById = async (id) => {
 
 // Adicionar novo funcionário
 export const addEmployee = async (employeeData) => {
-  const response = await fetch(`${API_BASE_URL}/api/employees`, {
+  const response = await fetch(`${API_BASE_URL}/employees`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ export const addEmployee = async (employeeData) => {
 
 // Atualizar funcionário
 export const updateEmployee = async (id, employeeData) => {
-  const response = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/employees/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -68,7 +69,7 @@ export const updateEmployee = async (id, employeeData) => {
 
 // Deletar funcionário
 export const deleteEmployee = async (id) => {
-  const response = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/employees/${id}`, {
     method: 'DELETE',
   });
   if (!response.ok) {
@@ -79,7 +80,7 @@ export const deleteEmployee = async (id) => {
 
 // Buscar salários com paginação
 export const getSalaries = async (page = 0, size = 10) => {
-  const response = await fetch(`${API_BASE_URL}/api/salaries?page=${page}&size=${size}`);
+  const response = await fetch(`${API_BASE_URL}/salaries?page=${page}&size=${size}`);
   if (!response.ok) {
     throw new Error('Erro ao buscar salários');
   }
@@ -95,7 +96,7 @@ const apiService = {
   addEmployee,
   updateEmployee,
   deleteEmployee,
-  getSalaries
+  getSalaries,
 };
 
 export default apiService;
