@@ -1,5 +1,5 @@
 // Base URL apontando para o endpoint público do Load Balancer
-const API_BASE_URL = 'https://apiempl.neemindev.com/';
+const API_BASE_URL = 'https://apiempl.neemindev.com';
 
 // Buscar dados do dashboard
 export const getDashboardData = async () => {
